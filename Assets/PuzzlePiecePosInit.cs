@@ -34,11 +34,15 @@ public class PuzzlePiecePosInit : MonoBehaviour
         {
             for (int x = 0; x < xCount; x++)
             {
-                float startX = x * width;
-                float startY = y * height;
-                var newSprite = Sprite.Create(tex, new Rect(startX, startY, width, height)
-                    , pivot, ppu);
-                newSprite.name = $"{x}:{y}";
+                var newSprite = Sprite.Create(originalTexture,
+                                                new Rect(x * width,
+                                                        originalTexture.height - ((y + 1) * height),
+                                                        width,
+                                                        height),
+                                                pivot,
+                                                ppu);
+                newSprite.name = $"{x} : {y}";
+
                 sprites.Add(newSprite);
             }
         }    
