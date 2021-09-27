@@ -21,7 +21,6 @@ public class FixedPiece : MonoBehaviour, IDropHandler
             return;
         }
 
-
         // 위치 스냅.
         eventData.pointerDrag.transform.position = transform.position;
 

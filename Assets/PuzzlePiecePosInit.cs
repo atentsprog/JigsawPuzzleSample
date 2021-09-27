@@ -10,13 +10,38 @@ using UnityEngine.UI;
 /// </summary>
 public class PuzzlePiecePosInit : MonoBehaviour
 {
+    public Texture2D originalTexture;
     public List<Sprite> sprites;
     public int xCount = 4;
     public int yCount = 3;
 
     private void Awake()
     {
+        SliceImage();
         InitPosition();
+    }
+
+    [ContextMenu("이미지 자르기")]
+    private void SliceImage()
+    {
+        var tex = originalTexture;
+        sprites.Clear();
+        Vector2 pivot = new Vector2(0.5f, 0.5f);
+        float ppu = 100;
+        float width = originalTexture.width / xCount;
+        float height = originalTexture.height / yCount;
+        for (int y = 0; y < yCount; y++)
+        {
+            for (int x = 0; x < xCount; x++)
+            {
+                float startX = x * width;
+                float startY = y * height;
+                var newSprite = Sprite.Create(tex, new Rect(startX, startY, width, height)
+                    , pivot, ppu);
+                newSprite.name = $"{x}:{y}";
+                sprites.Add(newSprite);
+            }
+        }    
     }
 
     [ContextMenu("퍼즐 배치")]
