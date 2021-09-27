@@ -48,6 +48,8 @@ public class PuzzlePiecePosInit : MonoBehaviour
                 imageIndex++;
             }
         }
+
+        GameManager.Instance.comepleteScore = sprites.Count * 100;
     }
 
     private void DeleteOldPiece()

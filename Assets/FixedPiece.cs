@@ -25,7 +25,7 @@ public class FixedPiece : MonoBehaviour, IDropHandler
             StartCoroutine(BlinkAndDisableClickCo(dragImage, 0.1f));
 
             ////점수 증가 시키자 - 100점 올리기
-            //GameManager.Instance.AddScore(100);
+            GameManager.Instance.AddScore(100);
         }
     }
 
