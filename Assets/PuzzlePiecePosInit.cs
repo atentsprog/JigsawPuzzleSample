@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 /// <summary>
 /// 화면 중앙에 표시하자.
@@ -51,11 +52,13 @@ public class PuzzlePiecePosInit : MonoBehaviour
     [ContextMenu("퍼즐 배치")]
     private void InitPosition()
     {
-        DeleteOldPiece();
+        DeleteOldPiece(transform);
+        DeleteOldPiece(pieceParentTr);
         float pieceWidth = sprites[0].textureRect.width;
         float pieceHeight = sprites[0].textureRect.height;
 
         int imageIndex = 0;
+        List<GameObject> images = new List<GameObject>();
         for (int y = 1; y <= yCount; y++)
         {
             for (int x = 1; x <= xCount; x++)
@@ -74,16 +77,36 @@ public class PuzzlePiecePosInit : MonoBehaviour
                 item.transform.localPosition = new Vector3(xPos, yPos, 0);
 
                 item.AddComponent<Image>().sprite = sprites[imageIndex];
+                images.Add(Instantiate(item, pieceParentTr));
+
                 imageIndex++;
             }
         }
 
+        foreach (var item in images)
+        {
+            if (item == null)
+                continue;
+
+            if (Application.isPlaying)
+                Destroy(item.GetComponent<FixedPiece>());
+            else
+                DestroyImmediate(item.GetComponent<FixedPiece>());
+
+            item.AddComponent<Piece>();
+            item.transform.position =
+                new Vector3(Random.Range(0 + pieceWidth * 0.5f, Camera.main.pixelWidth),
+                            Random.Range(0 + pieceHeight * 0.5f, Camera.main.pixelHeight));
+        }
+
+
         GameManager.Instance.comepleteScore = sprites.Count * 100;
     }
+    public Transform pieceParentTr;
 
-    private void DeleteOldPiece()
+    private void DeleteOldPiece(Transform tr)
     {
-        var childs = transform.GetComponentsInChildren<Image>();
+        var childs = tr.GetComponentsInChildren<Image>();
         foreach (var item in childs)
         {
             if(Application.isPlaying)

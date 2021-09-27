@@ -52,7 +52,7 @@ public class FixedPiece : MonoBehaviour, IDropHandler
     private bool IsRightPosition(GameObject dragObject)
     {
         // dragObject.name -> "3:2 (1)"
-        var dragObjectName = dragObject.name.Replace(" (1)", "");
+        var dragObjectName = dragObject.name.Replace("(Clone)", "");
         return name.CompareTo(dragObjectName) == 0;
     }
 }
