@@ -7,11 +7,20 @@ using UnityEngine.UI;
 
 public class FixedPiece : MonoBehaviour, IDropHandler
 {
+    bool isComplete = false;
     public void OnDrop(PointerEventData eventData)
     {
         //string log = $"{name}에 드랍됨 ({eventData.pointerDrag.name}";
         //Debug.Log(log, transform);
         //Debug.Log($"드랍된 오브젝트 {eventData.pointerDrag}", eventData.pointerDrag.transform);
+
+        // 이미 완료 되었다면 드랍을 캔슬 시켜서 드래그 시작위치로 이동 시키자.
+        if(isComplete)
+        {
+            eventData.pointerDrag.GetComponent<Piece>().ResetPosition();
+            return;
+        }
+
 
         // 위치 스냅.
         eventData.pointerDrag.transform.position = transform.position;
@@ -26,6 +35,8 @@ public class FixedPiece : MonoBehaviour, IDropHandler
 
             ////점수 증가 시키자 - 100점 올리기
             GameManager.Instance.AddScore(100);
+
+            isComplete = true;
         }
     }
 

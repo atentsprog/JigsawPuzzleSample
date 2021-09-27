@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -8,10 +9,12 @@ public class Piece : MonoBehaviour, IDragHandler
     , IBeginDragHandler, IEndDragHandler
 {
     public Vector2 offsetDrag;
+    Vector3 dragStartPosition;
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Vector2 pos = new Vector2(transform.position.x
-            , transform.position.y);
+        dragStartPosition = transform.position;
+        Vector2 pos = new Vector2(dragStartPosition.x
+            , dragStartPosition.y);
 
         offsetDrag = pos - eventData.position;
 
@@ -21,6 +24,11 @@ public class Piece : MonoBehaviour, IDragHandler
     public void OnDrag(PointerEventData eventData)
     {
         transform.position = eventData.position + offsetDrag;
+    }
+
+    internal void ResetPosition()
+    {
+        transform.position = dragStartPosition;
     }
 
     public void OnEndDrag(PointerEventData eventData)
