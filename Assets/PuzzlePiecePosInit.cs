@@ -31,7 +31,7 @@ public class PuzzlePiecePosInit : MonoBehaviour
         {
             for (int x = 1; x <= xCount; x++)
             {
-                var item = new GameObject($"{x}:{y}");
+                var item = new GameObject($"{x}:{y}", typeof(FixedPiece));
                 item.transform.parent = transform;
                 item.transform.localScale = Vector3.one;
                 RectTransform rt = item.AddComponent<RectTransform>();
