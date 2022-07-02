@@ -60,6 +60,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -400,6 +401,19 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Vincent-van-Gogh-Starry-Night_1280x1024_2: 6927372087514070165
+      Vincent-van-Gogh-Starry-Night_1280x1024_8: -639038612107221332
+      Vincent-van-Gogh-Starry-Night_1280x1024_1: -7946637898197985892
+      Vincent-van-Gogh-Starry-Night_1280x1024_11: 7990228312145530618
+      Vincent-van-Gogh-Starry-Night_1280x1024_4: 5236950505194482414
+      Vincent-van-Gogh-Starry-Night_1280x1024_0: -8966046471251689382
+      Vincent-van-Gogh-Starry-Night_1280x1024_9: -5233918230888388397
+      Vincent-van-Gogh-Starry-Night_1280x1024_6: 3889075008054977514
+      Vincent-van-Gogh-Starry-Night_1280x1024_3: -9174753073356378451
+      Vincent-van-Gogh-Starry-Night_1280x1024_10: 5123645826539323228
+      Vincent-van-Gogh-Starry-Night_1280x1024_5: 5270262443330567642
+      Vincent-van-Gogh-Starry-Night_1280x1024_7: 700903844669265498
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
